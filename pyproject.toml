@@ -1,0 +1,19 @@
+[project]
+name = "LDA-QDA-FinalProject-CS115-UIT"
+version = "0.1.0"
+description = "Final Project In CS115(UIT) regarding LDA & QDA"
+authors = [
+    {name = "NTGNguyen", email = "23521049@gm.uit.edu.vn"},
+]
+dependencies = []
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
