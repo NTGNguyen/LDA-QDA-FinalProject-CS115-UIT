@@ -7,9 +7,8 @@ import numpy as np
 from numpy import ndarray
 
 
-class StepByStepExplain():
-    """StepByStep Class using for explaination
-    """
+class StepByStepExplain:
+    """StepByStep Class using for explaination"""
 
     def __init__(self, X: ndarray, y: ndarray) -> None:
         """init function in step by step class
@@ -29,7 +28,9 @@ class StepByStepExplain():
         Returns:
             Tuple[ndarray,ndarray]: Tuple contains eigenvalue and eigen vector
         """
-        X: ndarray = self.X  # Feature data: NumPy array of shape (n_samples, n_features)
+        X: ndarray = (
+            self.X
+        )  # Feature data: NumPy array of shape (n_samples, n_features)
         y: ndarray = self.y  # Labels: NumPy array of shape (n_samples,)
 
         # Calculate the mean vector for class 0
