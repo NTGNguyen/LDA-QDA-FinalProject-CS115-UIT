@@ -38,10 +38,8 @@ class LDATwoBlobs(StepByStepExplain):
         X: ndarray = self.X
         y: ndarray = self.y
         plt.figure(figsize=(8, 6))
-        plt.scatter(X[y == 0][:, 0], X[y == 0][:, 1],
-                    color="red", label="Class 0")
-        plt.scatter(X[y == 1][:, 0], X[y == 1][:, 1],
-                    color="blue", label="Class 1")
+        plt.scatter(X[y == 0][:, 0], X[y == 0][:, 1], color="red", label="Class 0")
+        plt.scatter(X[y == 1][:, 0], X[y == 1][:, 1], color="blue", label="Class 1")
         plt.title("Two Moons Dataset")
         plt.xlabel("Feature 1")
         plt.ylabel("Feature 2")
@@ -83,10 +81,8 @@ class LDATwoBlobs(StepByStepExplain):
         y_vals: ndarray = (lda_direction[1] / lda_direction[0]) * (x_vals - u1[0]) + u1[
             1
         ]
-        plt.scatter(X[y == 0][:, 0], X[y == 0][:, 1],
-                    color="red", label="Class 0")
-        plt.scatter(X[y == 1][:, 0], X[y == 1][:, 1],
-                    color="blue", label="Class 1")
+        plt.scatter(X[y == 0][:, 0], X[y == 0][:, 1], color="red", label="Class 0")
+        plt.scatter(X[y == 1][:, 0], X[y == 1][:, 1], color="blue", label="Class 1")
         # Plot LDA separation axis
         plt.plot(x_vals, y_vals, "k--", label="LDA Axis")
 
@@ -211,8 +207,7 @@ class IrisDataSetWithLDA(LDA):
         plt.figure(figsize=(8, 6))
         for i, target_name in enumerate(self.target_names):
             plt.scatter(
-                self.X[self.y == i, 0], self.X[self.y ==
-                                               i, 1], label=target_name
+                self.X[self.y == i, 0], self.X[self.y == i, 1], label=target_name
             )
         plt.title("Scatter plot of the first two features")
         plt.xlabel(self.feature_names[0])  # Sepal length
@@ -227,8 +222,7 @@ class IrisDataSetWithLDA(LDA):
         Args:
             None
         """
-        df: pd.DataFrame = pd.DataFrame(
-            data=self.X, columns=self.feature_names)
+        df: pd.DataFrame = pd.DataFrame(data=self.X, columns=self.feature_names)
         df["species"] = self.y
         df["species"] = df["species"].map(
             {0: "setosa", 1: "versicolor", 2: "virginica"}
@@ -242,8 +236,7 @@ class IrisDataSetWithLDA(LDA):
         Args:
             None
         """
-        df: pd.DataFrame = pd.DataFrame(
-            data=self.X, columns=self.feature_names)
+        df: pd.DataFrame = pd.DataFrame(data=self.X, columns=self.feature_names)
         df["species"] = self.y
         df["species"] = df["species"].map(
             {0: "setosa", 1: "versicolor", 2: "virginica"}
@@ -259,8 +252,7 @@ class IrisDataSetWithLDA(LDA):
         Args:
             None
         """
-        df: pd.DataFrame = pd.DataFrame(
-            data=self.X, columns=self.feature_names)
+        df: pd.DataFrame = pd.DataFrame(data=self.X, columns=self.feature_names)
         df["species"] = self.y
         df["species"] = df["species"].map(
             {0: "setosa", 1: "versicolor", 2: "virginica"}
@@ -319,8 +311,7 @@ class LDAIrisDataSetOneComponentVisualize(IrisDataSetWithLDA):
         plt.colorbar(label="Class Labels")
         plt.yticks([])
 
-        colors: list = [plt.cm.viridis(i / 3)
-                        for i in range(len(self.target_names))]
+        colors: list = [plt.cm.viridis(i / 3) for i in range(len(self.target_names))]
 
         for cls, color in zip(self.target_names, colors):
             plt.scatter([], [], c=[color], label=cls)
