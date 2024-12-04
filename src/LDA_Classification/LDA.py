@@ -1,7 +1,7 @@
 """LDA for specified number of classes with better struc"""
 import numpy as np
-
 from numpy import ndarray
+
 
 class LDA:
     """
@@ -21,8 +21,10 @@ class LDA:
             n_components (int): Number of components to keep.
         """
         self.n_components: int = n_components
-        self.linear_discriminants: ndarray | None = None  # Eigenvectors of the LDA transformation
-        self.class_means_trans: dict[int, ndarray] = {}  # Mean of each class in the LDA-transformed space
+        # Eigenvectors of the LDA transformation
+        self.linear_discriminants: ndarray | None = None
+        # Mean of each class in the LDA-transformed space
+        self.class_means_trans: dict[int, ndarray] = {}
 
     def fit(self, X: ndarray, y: ndarray) -> None:
         """
@@ -36,7 +38,8 @@ class LDA:
             None
         """
         n_features: int = X.shape[1]  # Number of features in the dataset
-        class_labels: ndarray = np.unique(y)  # Unique class labels in the dataset
+        # Unique class labels in the dataset
+        class_labels: ndarray = np.unique(y)
 
         # Overall mean vector of the dataset
         mean_overall: ndarray = np.mean(X, axis=0)
@@ -108,9 +111,11 @@ class LDA:
         predictions: list[int] = []
         for sample in transformed_X:
             # Calculate distances to all class means in the transformed space
-            distances: list[float] = [np.linalg.norm(sample - self.class_means_trans[c]) for c in self.class_means_trans]
+            distances: list[float] = [np.linalg.norm(
+                sample - self.class_means_trans[c]) for c in self.class_means_trans]
             # Select the class with the minimum distance
-            predicted_class: int = min(self.class_means_trans, key=lambda c: np.linalg.norm(sample - self.class_means_trans[c]))
+            predicted_class: int = min(self.class_means_trans, key=lambda c: np.linalg.norm(
+                sample - self.class_means_trans[c]))
             predictions.append(predicted_class)
 
         return np.array(predictions)
