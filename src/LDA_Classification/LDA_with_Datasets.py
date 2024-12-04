@@ -26,7 +26,7 @@ class LDATwoBlobs(StepByStepExplain):
         Initializes the LDATwoBlobs class with a two-blobs dataset.
         """
         X,y = make_blobs(n_samples=300, centers=2, n_features=2, random_state=42)
-        super().__init__(X,y)
+        super().__init__(X, y)
     
     def show_data_before_project_by_scatter(self):
         """
