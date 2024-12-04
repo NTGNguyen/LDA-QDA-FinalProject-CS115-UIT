@@ -1,10 +1,10 @@
 """Step by Step explaining how LDA works in 2 classes(Just use to explain)
 """
 
-import numpy as np
-
-from numpy import ndarray
 from typing import Tuple
+
+import numpy as np
+from numpy import ndarray
 
 
 class StepByStepExplain:
