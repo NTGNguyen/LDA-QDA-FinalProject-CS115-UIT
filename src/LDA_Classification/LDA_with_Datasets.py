@@ -1,4 +1,5 @@
 """LDA with some datasets^^"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -23,8 +24,7 @@ class LDATwoBlobs(StepByStepExplain):
         """
         Initializes the LDATwoBlobs class with a two-blobs dataset.
         """
-        X, y = make_blobs(n_samples=300, centers=2,
-                          n_features=2, random_state=42)
+        X, y = make_blobs(n_samples=300, centers=2, n_features=2, random_state=42)
         super().__init__(X, y)
 
     def show_data_before_project_by_scatter(self):
@@ -37,13 +37,11 @@ class LDATwoBlobs(StepByStepExplain):
         X: ndarray = self.X
         y: ndarray = self.y
         plt.figure(figsize=(8, 6))
-        plt.scatter(X[y == 0][:, 0], X[y == 0][:, 1],
-                    color='red', label='Class 0')
-        plt.scatter(X[y == 1][:, 0], X[y == 1][:, 1],
-                    color='blue', label='Class 1')
-        plt.title('Two Moons Dataset')
-        plt.xlabel('Feature 1')
-        plt.ylabel('Feature 2')
+        plt.scatter(X[y == 0][:, 0], X[y == 0][:, 1], color="red", label="Class 0")
+        plt.scatter(X[y == 1][:, 0], X[y == 1][:, 1], color="blue", label="Class 1")
+        plt.title("Two Moons Dataset")
+        plt.xlabel("Feature 1")
+        plt.ylabel("Feature 2")
         plt.legend()
         plt.grid(True)
         plt.show()
@@ -79,19 +77,18 @@ class LDATwoBlobs(StepByStepExplain):
         plt.figure(figsize=(8, 6))
         u1: ndarray = np.mean(X[y == 0], axis=0)
         x_vals: ndarray = np.linspace(min(X[:, 0]), max(X[:, 0]), 100)
-        y_vals: ndarray = (
-            lda_direction[1] / lda_direction[0]) * (x_vals - u1[0]) + u1[1]
-        plt.scatter(X[y == 0][:, 0], X[y == 0][:, 1],
-                    color='red', label='Class 0')
-        plt.scatter(X[y == 1][:, 0], X[y == 1][:, 1],
-                    color='blue', label='Class 1')
+        y_vals: ndarray = (lda_direction[1] / lda_direction[0]) * (x_vals - u1[0]) + u1[
+            1
+        ]
+        plt.scatter(X[y == 0][:, 0], X[y == 0][:, 1], color="red", label="Class 0")
+        plt.scatter(X[y == 1][:, 0], X[y == 1][:, 1], color="blue", label="Class 1")
         # Plot LDA separation axis
-        plt.plot(x_vals, y_vals, 'k--', label='LDA Axis')
+        plt.plot(x_vals, y_vals, "k--", label="LDA Axis")
 
         # Set title and show plot
-        plt.title('Two Blobs Dataset with LDA Separation Axis')
-        plt.xlabel('Feature 1')
-        plt.ylabel('Feature 2')
+        plt.title("Two Blobs Dataset with LDA Separation Axis")
+        plt.xlabel("Feature 1")
+        plt.ylabel("Feature 2")
         plt.legend()
         plt.grid(True)
         plt.show()
@@ -105,10 +102,12 @@ class LDATwoBlobs(StepByStepExplain):
         """
         _, X_LDA_Class0, X_LDA_Class1 = self.forward()
         plt.figure(figsize=(8, 6))
-        plt.scatter(X_LDA_Class0, np.zeros(len(X_LDA_Class0)),
-                    color='red', label='Class 0')
-        plt.scatter(X_LDA_Class1, np.zeros(len(X_LDA_Class1)),
-                    color='blue', label='Class 1')
+        plt.scatter(
+            X_LDA_Class0, np.zeros(len(X_LDA_Class0)), color="red", label="Class 0"
+        )
+        plt.scatter(
+            X_LDA_Class1, np.zeros(len(X_LDA_Class1)), color="blue", label="Class 1"
+        )
         plt.title("Data after Dimensionality Reduction")
         plt.xlabel("Feature 1")
         plt.ylabel("Feature 2")
@@ -127,13 +126,15 @@ class LDATwoBlobs(StepByStepExplain):
         _, w = self.step_by_step()
 
         X_projected: ndarray = np.dot(self.X, w)
-        lda_data: pd.DataFrame = pd.DataFrame({
-            'LDA Component': X_projected,  # LDA component after projection
-            'Class': self.y  # Class labels
-        })
+        lda_data: pd.DataFrame = pd.DataFrame(
+            {
+                "LDA Component": X_projected,  # LDA component after projection
+                "Class": self.y,  # Class labels
+            }
+        )
 
         # Ensure 'Class' is categorical
-        lda_data['Class'] = lda_data['Class'].astype('category')
+        lda_data["Class"] = lda_data["Class"].astype("category")
 
         # Plot distribution with kdeplot
         plt.figure(figsize=(10, 6))
@@ -156,14 +157,16 @@ class LDATwoBlobs(StepByStepExplain):
             hue="Class",  # Color by class
             palette="Set2",  # Choose color palette
             marker="o",  # Choose point shape
-            edgecolor='black',  # Edge color for points
+            edgecolor="black",  # Edge color for points
             s=50,  # Point size
-            legend=False  # Disable legend for data points
+            legend=False,  # Disable legend for data points
         )
 
         # Add title and show plot
         plt.title(
-            "Distribution of Data and Data Points after Dimensionality Reduction (LDA)", fontsize=16)
+            "Distribution of Data and Data Points after Dimensionality Reduction (LDA)",
+            fontsize=16,
+        )
         plt.xlabel("LDA Component")
         plt.ylabel("Density")
 
@@ -202,8 +205,9 @@ class IrisDataSetWithLDA(LDA):
         """
         plt.figure(figsize=(8, 6))
         for i, target_name in enumerate(self.target_names):
-            plt.scatter(self.X[self.y == i, 0],
-                        self.X[self.y == i, 1], label=target_name)
+            plt.scatter(
+                self.X[self.y == i, 0], self.X[self.y == i, 1], label=target_name
+            )
         plt.title("Scatter plot of the first two features")
         plt.xlabel(self.feature_names[0])  # Sepal length
         plt.ylabel(self.feature_names[1])  # Sepal width
@@ -217,12 +221,12 @@ class IrisDataSetWithLDA(LDA):
         Args:
             None
         """
-        df: pd.DataFrame = pd.DataFrame(
-            data=self.X, columns=self.feature_names)
-        df['species'] = self.y
-        df['species'] = df['species'].map(
-            {0: 'setosa', 1: 'versicolor', 2: 'virginica'})
-        sns.pairplot(data=df, hue='species', diag_kind='kde')
+        df: pd.DataFrame = pd.DataFrame(data=self.X, columns=self.feature_names)
+        df["species"] = self.y
+        df["species"] = df["species"].map(
+            {0: "setosa", 1: "versicolor", 2: "virginica"}
+        )
+        sns.pairplot(data=df, hue="species", diag_kind="kde")
 
     def visualize_data_with_pair_plot_and_kde_bf_re_di(self) -> None:
         """
@@ -231,13 +235,14 @@ class IrisDataSetWithLDA(LDA):
         Args:
             None
         """
-        df: pd.DataFrame = pd.DataFrame(
-            data=self.X, columns=self.feature_names)
-        df['species'] = self.y
-        df['species'] = df['species'].map(
-            {0: 'setosa', 1: 'versicolor', 2: 'virginica'})
-        sns.pairplot(data=df, hue='species').map_diag(
-            sns.histplot).map_lower(sns.kdeplot).map_upper(sns.kdeplot)
+        df: pd.DataFrame = pd.DataFrame(data=self.X, columns=self.feature_names)
+        df["species"] = self.y
+        df["species"] = df["species"].map(
+            {0: "setosa", 1: "versicolor", 2: "virginica"}
+        )
+        sns.pairplot(data=df, hue="species").map_diag(sns.histplot).map_lower(
+            sns.kdeplot
+        ).map_upper(sns.kdeplot)
 
     def visualize_data_with_joint_plot_bf_re_di(self) -> None:
         """
@@ -246,13 +251,14 @@ class IrisDataSetWithLDA(LDA):
         Args:
             None
         """
-        df: pd.DataFrame = pd.DataFrame(
-            data=self.X, columns=self.feature_names)
-        df['species'] = self.y
-        df['species'] = df['species'].map(
-            {0: 'setosa', 1: 'versicolor', 2: 'virginica'})
-        g = sns.jointplot(data=df, x='sepal length (cm)',
-                          y='sepal width (cm)', hue='species')
+        df: pd.DataFrame = pd.DataFrame(data=self.X, columns=self.feature_names)
+        df["species"] = self.y
+        df["species"] = df["species"].map(
+            {0: "setosa", 1: "versicolor", 2: "virginica"}
+        )
+        g = sns.jointplot(
+            data=df, x="sepal length (cm)", y="sepal width (cm)", hue="species"
+        )
         g.plot_joint(sns.kdeplot)
 
     def forward(self) -> ndarray:
@@ -290,14 +296,21 @@ class LDAIrisDataSetOneComponentVisualize(IrisDataSetWithLDA):
         Args:
             None
         """
-        plt.scatter(self.X_projected, [0] * len(self.X_projected), c=self.y,
-                    edgecolor='none', alpha=0.8, cmap='viridis', vmin=0, vmax=2)
-        plt.xlabel('Linear Discriminant 1')
+        plt.scatter(
+            self.X_projected,
+            [0] * len(self.X_projected),
+            c=self.y,
+            edgecolor="none",
+            alpha=0.8,
+            cmap="viridis",
+            vmin=0,
+            vmax=2,
+        )
+        plt.xlabel("Linear Discriminant 1")
         plt.colorbar(label="Class Labels")
         plt.yticks([])
 
-        colors: list = [plt.cm.viridis(i / 3)
-                        for i in range(len(self.target_names))]
+        colors: list = [plt.cm.viridis(i / 3) for i in range(len(self.target_names))]
 
         for cls, color in zip(self.target_names, colors):
             plt.scatter([], [], c=[color], label=cls)
@@ -331,11 +344,19 @@ class LDAIrisDataSetTwoComponentVisualize(IrisDataSetWithLDA):
         """
         x1_tran: np.ndarray = self.X_projected[:, 0]
         x2_tran: np.ndarray = self.X_projected[:, 1]
-        plt.colormaps['viridis']
-        plt.scatter(x1_tran, x2_tran, c=self.y, edgecolor='none',
-                    alpha=0.8, cmap='viridis', vmin=0, vmax=2)
+        plt.colormaps["viridis"]
+        plt.scatter(
+            x1_tran,
+            x2_tran,
+            c=self.y,
+            edgecolor="none",
+            alpha=0.8,
+            cmap="viridis",
+            vmin=0,
+            vmax=2,
+        )
 
-        plt.xlabel('Linear Discriminant 1')
-        plt.ylabel('Linear Discriminant 2')
+        plt.xlabel("Linear Discriminant 1")
+        plt.ylabel("Linear Discriminant 2")
         plt.colorbar(label="Class Labels")
         plt.show()
