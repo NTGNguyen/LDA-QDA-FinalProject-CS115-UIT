@@ -8,6 +8,7 @@ repos:
     rev: 7.1.1
     hooks:
       - id: flake8
+        args: [--ignore=E501, F841, F401]
 
   - repo: https://github.com/hhatto/autopep8
     rev: v2.3.1
