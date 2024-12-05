@@ -1,5 +1,7 @@
-from LDA_with_Datasets import LDATwoBlobs, LDAIrisDataSetTwoComponentVisualize, LDAIrisDataSetOneComponentVisualize
 from LDA import LDA
+from LDA_with_Datasets import (LDAIrisDataSetOneComponentVisualize,
+                               LDAIrisDataSetTwoComponentVisualize,
+                               LDATwoBlobs)
 from Step_by_Step import StepByStepExplain
 
 __all__ = [
