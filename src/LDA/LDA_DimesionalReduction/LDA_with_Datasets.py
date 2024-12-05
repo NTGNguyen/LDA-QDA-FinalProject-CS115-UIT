@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from LDA import LDA
+from ..LDA import LDA
 from numpy import ndarray
 from sklearn.datasets import load_iris, make_blobs
 from Step_by_Step import StepByStepExplain

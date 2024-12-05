@@ -1,4 +1,3 @@
-from LDA import LDA
 from LDA_with_Datasets import (LDAIrisDataSetOneComponentVisualize,
                                LDAIrisDataSetTwoComponentVisualize,
                                LDATwoBlobs)
@@ -8,6 +7,5 @@ __all__ = [
     'LDATwoBlobs',
     'LDAIrisDataSetTwoComponentVisualize',
     'LDAIrisDataSetOneComponentVisualize',
-    'LDA',
     'StepByStepExplain'
 ]
