@@ -1,16 +1,15 @@
 """LDA Classification with two types of datasets"""
-from ..LDA import LDA
+from typing import Any, Tuple
 
-from sklearn.utils._bunch import Bunch
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from pandas import DataFrame
-from pandas import Series
-from typing import Tuple
-from numpy.typing import NDArray
 from numpy import Float64
-from typing import Any
+from numpy.typing import NDArray
+from pandas import DataFrame, Series
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
+from sklearn.utils._bunch import Bunch
+
+from ..LDA import LDA
 
 
 class LDAClassificationsSeaborns(LDA):
