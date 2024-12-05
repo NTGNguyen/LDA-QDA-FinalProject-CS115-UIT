@@ -109,6 +109,3 @@ class LDAClassificationsSKLearns(LDA):
         y_pred: NDArray[Any] = self.predict(X_test)
         accuracy: float = accuracy_score(y_test, y_pred)
         return accuracy
-
-
-
