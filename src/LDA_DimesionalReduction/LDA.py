@@ -75,7 +75,7 @@ class LDA:
         eigenvectors = eigenvectors[idxs]
 
         # Select the top `n_components` eigenvectors
-        self.linear_discriminants: ndarray = eigenvectors[0 : self.n_components]
+        self.linear_discriminants: ndarray = eigenvectors[0: self.n_components]
 
         # Transform the data and store means in the transformed space
         X_transformed: ndarray = self.tranform(X)
@@ -119,7 +119,8 @@ class LDA:
             # Select the class with the minimum distance
             predicted_class: int = min(
                 self.class_means_trans,
-                key=lambda c: np.linalg.norm(sample - self.class_means_trans[c]),
+                key=lambda c: np.linalg.norm(
+                    sample - self.class_means_trans[c]),
             )
             predictions.append(predicted_class)
 
