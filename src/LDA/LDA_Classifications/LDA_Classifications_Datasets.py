@@ -1,16 +1,16 @@
 """LDA Classification with two types of datasets"""
+from typing import Any, Tuple
+
+from numpy import Float64
+from numpy.typing import NDArray
+from pandas import DataFrame, Series
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.utils._bunch import Bunch
+
 from ..LDA import LDA
 
-from sklearn.utils._bunch import Bunch
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from pandas import DataFrame
-from pandas import Series
-from typing import Tuple
-from numpy.typing import NDArray
-from numpy import Float64
-from typing import Any
-from sklearn.preprocessing import LabelEncoder
 
 class LDAClassificationsSeaborns(LDA):
     """
@@ -63,11 +63,13 @@ class LDAClassificationsSeaborns(LDA):
         y_train: NDArray[Any]
         y_test: NDArray[Any]
 
-        X_train, X_test, y_train, y_test = train_test_split(self.X, self.y, test_size=0.3, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(
+            self.X, self.y, test_size=0.3, random_state=42)
         self.fit(X_train, y_train)
         y_pred: NDArray[Any] = self.predict(X_test)
         accuracy: float = accuracy_score(y_test, y_pred)
         return accuracy
+
 
 class LDAClassificationsSKLearns(LDA):
     """
@@ -88,7 +90,7 @@ class LDAClassificationsSKLearns(LDA):
         """
         super().__init__(k)
         self.dataset: Tuple[NDArray[Float64], NDArray[Any]] = dataset
-    
+
     def forward_and_predict(self) -> float:
         """
         Splits the data, fits the LDA model, and makes predictions.
@@ -101,11 +103,13 @@ class LDAClassificationsSKLearns(LDA):
         y_train: NDArray[Any]
         y_test: NDArray[Any]
 
-        X_train, X_test, y_train, y_test = train_test_split(self.dataset[0], self.dataset[1], test_size=0.3, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(
+            self.dataset[0], self.dataset[1], test_size=0.3, random_state=42)
         self.fit(X_train, y_train)
         y_pred: NDArray[Any] = self.predict(X_test)
         accuracy: float = accuracy_score(y_test, y_pred)
         return accuracy
+
 
 class LDAClassificationsSKLearns(LDA):
     """
@@ -126,7 +130,7 @@ class LDAClassificationsSKLearns(LDA):
         """
         super().__init__(k)
         self.dataset: Tuple[NDArray[Float64], NDArray[Any]] = dataset
-    
+
     def forward_and_predict(self) -> float:
         """
         Splits the data, fits the LDA model, and makes predictions.
@@ -139,11 +143,9 @@ class LDAClassificationsSKLearns(LDA):
         y_train: NDArray[Any]
         y_test: NDArray[Any]
 
-        X_train, X_test, y_train, y_test = train_test_split(self.dataset[0], self.dataset[1], test_size=0.3, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(
+            self.dataset[0], self.dataset[1], test_size=0.3, random_state=42)
         self.fit(X_train, y_train)
         y_pred: NDArray[Any] = self.predict(X_test)
         accuracy: float = accuracy_score(y_test, y_pred)
         return accuracy
-
-
-
