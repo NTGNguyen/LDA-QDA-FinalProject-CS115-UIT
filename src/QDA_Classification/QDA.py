@@ -1,6 +1,7 @@
 """QDA Classification"""
 import numpy as np
 
+
 class QDA:
     """
     Quadratic Discriminant Analysis (QDA) classifier.
@@ -59,7 +60,8 @@ class QDA:
                 inv_cov = np.linalg.inv(cov)
                 diff = sample - mean
                 exponent = -0.5 * diff.T @ inv_cov @ diff
-                norm_const = np.sqrt((2 * np.pi) ** len(mean) * np.linalg.det(cov))
+                norm_const = np.sqrt(
+                    (2 * np.pi) ** len(mean) * np.linalg.det(cov))
 
                 prob = np.exp(exponent) / norm_const
                 class_probs.append(prior * prob)
@@ -91,7 +93,8 @@ class QDA:
                 inv_cov = np.linalg.inv(cov)
                 diff = sample - mean
                 exponent = -0.5 * diff.T @ inv_cov @ diff
-                norm_const = np.sqrt((2 * np.pi) ** len(mean) * np.linalg.det(cov))
+                norm_const = np.sqrt(
+                    (2 * np.pi) ** len(mean) * np.linalg.det(cov))
 
                 prob = np.exp(exponent) / norm_const
                 class_probs.append(prior * prob)
