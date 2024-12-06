@@ -30,6 +30,7 @@ jobs:
 
       - name: Run pre-commit
         if: ${{ always() }}
+        continue-on-error: true
         run: pre-commit run --all-files
 
       - name: Create Pull Request
